@@ -1,0 +1,919 @@
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #05000c;
+    color: white;
+}
+
+
+/* =====================================================
+   BACKGROUND FOTO PNG
+===================================================== */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.35),
+            rgba(0, 0, 0, 0.65)
+        ),
+        url("assets/background\ PG\ GROUP.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: -10;
+}
+
+
+/* =====================================================
+   STARS
+===================================================== */
+
+.stars {
+    position: fixed;
+    inset: 0;
+
+    z-index: -8;
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(circle, white 1px, transparent 2px),
+        radial-gradient(circle, white 1px, transparent 2px),
+        radial-gradient(circle, white 1px, transparent 2px);
+
+    background-size:
+        120px 120px,
+        190px 190px,
+        270px 270px;
+
+    background-position:
+        20px 40px,
+        80px 120px,
+        160px 20px;
+
+    animation: starsMove 25s linear infinite;
+}
+
+@keyframes starsMove {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100px);
+    }
+}
+
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+.particles {
+    position: fixed;
+    inset: 0;
+
+    z-index: -7;
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 2px),
+        radial-gradient(circle, rgba(150,100,255,.7) 1px, transparent 2px);
+
+    background-size:
+        80px 80px,
+        130px 130px;
+
+    animation: particleMove 15s linear infinite;
+}
+
+@keyframes particleMove {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-150px);
+    }
+}
+
+
+/* =====================================================
+   ASTEROIDS
+===================================================== */
+
+.asteroids {
+    position: fixed;
+    inset: 0;
+
+    z-index: -6;
+    pointer-events: none;
+}
+
+.asteroids::before,
+.asteroids::after {
+    content: "";
+
+    position: absolute;
+
+    width: 15px;
+    height: 15px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            #999,
+            #333 50%,
+            #111
+        );
+
+    box-shadow:
+        0 0 10px rgba(255,255,255,.3);
+}
+
+.asteroids::before {
+
+    top: 15%;
+    left: -30px;
+
+    animation:
+        asteroid1 12s linear infinite;
+}
+
+.asteroids::after {
+
+    top: 55%;
+    right: -30px;
+
+    width: 22px;
+    height: 22px;
+
+    animation:
+        asteroid2 16s linear infinite;
+}
+
+@keyframes asteroid1 {
+
+    0% {
+        transform:
+            translate(-50px, 0)
+            rotate(0deg);
+    }
+
+    100% {
+        transform:
+            translate(120vw, 250px)
+            rotate(720deg);
+    }
+}
+
+@keyframes asteroid2 {
+
+    0% {
+        transform:
+            translate(50px, 0)
+            rotate(0deg);
+    }
+
+    100% {
+        transform:
+            translate(-120vw, 300px)
+            rotate(-720deg);
+    }
+}
+
+
+/* =====================================================
+   LIGHTNING
+===================================================== */
+
+.lightning-container {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: -3;
+}
+
+
+/* Petir */
+
+.lightning {
+
+    position: absolute;
+
+    top: -30px;
+
+    width: 5px;
+    height: 0;
+
+    background: white;
+
+    box-shadow:
+        0 0 10px white,
+        0 0 25px #7b5cff,
+        0 0 50px #7b5cff;
+
+    clip-path: polygon(
+        50% 0%,
+        100% 25%,
+        65% 25%,
+        100% 50%,
+        50% 100%,
+        55% 55%,
+        20% 55%
+    );
+
+    animation: lightningStrike .35s linear forwards;
+}
+
+@keyframes lightningStrike {
+
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    40% {
+        height: 45vh;
+        opacity: 1;
+    }
+
+    55% {
+        opacity: 0;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        height: 70vh;
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   MAIN CONTAINER
+===================================================== */
+
+.main-container {
+
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 50px 4vw;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-rows: repeat(2, auto);
+
+    gap: 60px 80px;
+
+    align-items: start;
+}
+
+
+/* =====================================================
+   LOGO BOX
+===================================================== */
+
+.logo-box {
+
+    position: relative;
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    animation:
+        logoBounce 2.5s ease-in-out infinite;
+
+    filter:
+        drop-shadow(0 0 20px rgba(255,255,255,.15));
+}
+
+
+/* Posisi */
+
+.logo-1 {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.logo-2 {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.logo-3 {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.logo-4 {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+
+/* =====================================================
+   BOUNCE
+===================================================== */
+
+@keyframes logoBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+
+/* =====================================================
+   WELCOME TEXT
+===================================================== */
+
+.welcome {
+
+    margin-bottom: 10px;
+
+    font-size: clamp(20px, 2.5vw, 38px);
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-align: center;
+
+    animation:
+        welcomeBounce 1.8s ease-in-out infinite;
+}
+
+@keyframes welcomeBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+/* PGDEWA */
+
+.welcome-purple {
+
+    color: #c56cff;
+
+    text-shadow:
+        3px 3px 0 #000,
+        0 0 10px #8d32ff,
+        0 0 20px #8d32ff;
+}
+
+
+/* PGRAJA */
+
+.welcome-gold {
+
+    color: #ffd84d;
+
+    text-shadow:
+        2px 2px 0 #8a5a00,
+        0 0 10px #d99c00,
+        0 0 20px #d99c00;
+}
+
+
+/* PGPAUS */
+
+.welcome-blue {
+
+    color: #28c9ff;
+
+    text-shadow:
+        2px 2px 0 #003c66,
+        0 0 10px #008cff,
+        0 0 20px #008cff;
+}
+
+
+/* PGKUDA */
+
+.welcome-brown {
+
+    color: #d9a441;
+
+    text-shadow:
+        2px 2px 0 #3e2200,
+        0 0 10px #9a6214,
+        0 0 20px #9a6214;
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.main-logo {
+
+    width: min(32vw, 430px);
+
+    height: auto;
+
+    max-height: 300px;
+
+    object-fit: contain;
+
+    display: block;
+
+    margin-bottom: 25px;
+
+    filter:
+        drop-shadow(0 0 12px rgba(255,255,255,.25))
+        drop-shadow(0 0 25px rgba(150,80,255,.3));
+}
+
+
+/* =====================================================
+   BUTTON GRID
+===================================================== */
+
+.button-grid {
+
+    width: min(100%, 430px);
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.action-btn {
+
+    position: relative;
+
+    min-height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 12px 15px;
+
+    text-decoration: none;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    border-radius: 12px;
+
+    border: 2px solid rgba(255,255,255,.7);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.2),
+            rgba(0,0,0,.7)
+        );
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.5),
+        inset 0 0 10px rgba(255,255,255,.1);
+
+    animation:
+        buttonBounce 2s ease-in-out infinite;
+
+    transition:
+        transform .15s ease,
+        filter .15s ease;
+
+    overflow: hidden;
+}
+
+
+/* Bounce tombol */
+
+@keyframes buttonBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+
+/* =====================================================
+   RGB GLITCH
+===================================================== */
+
+.action-btn::before,
+.action-btn::after {
+
+    content: attr(data-text);
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.action-btn::before {
+    color: #ff003c;
+}
+
+.action-btn::after {
+    color: #00ffff;
+}
+
+
+/* Hover */
+
+.action-btn:hover {
+
+    animation:
+        shake .08s infinite;
+
+    filter:
+        brightness(1.5)
+        drop-shadow(0 0 10px white);
+
+    z-index: 5;
+}
+
+.action-btn:hover::before {
+
+    opacity: .8;
+
+    transform:
+        translate(-4px, 0);
+
+    animation:
+        glitch 0.12s infinite;
+}
+
+.action-btn:hover::after {
+
+    opacity: .8;
+
+    transform:
+        translate(4px, 0);
+
+    animation:
+        glitch 0.15s infinite reverse;
+}
+
+
+/* =====================================================
+   SHAKE
+===================================================== */
+
+@keyframes shake {
+
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-6px, 4px)
+                   rotate(-1deg);
+    }
+
+    40% {
+        transform: translate(6px, -4px)
+                   rotate(1deg);
+    }
+
+    60% {
+        transform: translate(-5px, -3px)
+                   rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(5px, 3px)
+                   rotate(1deg);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+
+/* =====================================================
+   GLITCH
+===================================================== */
+
+@keyframes glitch {
+
+    0% {
+        clip-path: inset(0 0 80% 0);
+    }
+
+    25% {
+        clip-path: inset(40% 0 30% 0);
+    }
+
+    50% {
+        clip-path: inset(10% 0 60% 0);
+    }
+
+    75% {
+        clip-path: inset(70% 0 5% 0);
+    }
+
+    100% {
+        clip-path: inset(0 0 80% 0);
+    }
+}
+
+
+/* =====================================================
+   BUTTON COLORS
+===================================================== */
+
+.login-btn {
+    border-color: #8f5cff;
+}
+
+.daftar-btn {
+    border-color: #ffbf35;
+}
+
+.livechat-btn {
+    border-color: #19d8ff;
+}
+
+.rtp-btn {
+    border-color: #ff5cce;
+}
+
+
+/* =====================================================
+   NOTE
+===================================================== */
+
+.note-section {
+
+    width: 100%;
+
+    padding:
+        0
+        5vw
+        50px;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+
+.note-box {
+
+    width: min(100%, 1000px);
+
+    padding: 30px;
+
+    border-radius: 16px;
+
+    border: 2px solid rgba(255,255,255,.35);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20,10,40,.9),
+            rgba(5,5,15,.92)
+        );
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.6),
+        inset 0 0 20px rgba(255,255,255,.05);
+
+    backdrop-filter: blur(10px);
+}
+
+
+.note-box h2 {
+
+    margin-bottom: 15px;
+
+    color: #d58cff;
+
+    text-align: center;
+
+    font-size: 25px;
+
+    text-shadow:
+        2px 2px 0 black,
+        0 0 10px #8c38ff;
+}
+
+
+.note-box p {
+
+    margin-bottom: 12px;
+
+    line-height: 1.7;
+
+    color: #eee;
+
+    font-size: 16px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .main-container {
+
+        padding: 40px 20px;
+
+        grid-template-columns: 1fr;
+
+        grid-template-rows: auto;
+
+        gap: 70px;
+    }
+
+
+    .logo-1,
+    .logo-2,
+    .logo-3,
+    .logo-4 {
+
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+
+    .main-logo {
+
+        width: min(80vw, 360px);
+
+        max-height: 260px;
+    }
+
+
+    .button-grid {
+
+        width: min(90vw, 400px);
+    }
+
+
+    .action-btn {
+
+        min-height: 55px;
+
+        font-size: 14px;
+    }
+
+
+    .note-section {
+
+        padding:
+            0
+            20px
+            30px;
+    }
+
+
+    .note-box {
+
+        padding: 22px;
+    }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 450px) {
+
+    .main-container {
+
+        padding-top: 30px;
+
+        gap: 55px;
+    }
+
+
+    .welcome {
+
+        font-size: 20px;
+    }
+
+
+    .main-logo {
+
+        width: 85vw;
+    }
+
+
+    .button-grid {
+
+        gap: 8px;
+    }
+
+
+    .action-btn {
+
+        min-height: 50px;
+
+        padding: 8px;
+
+        font-size: 12px;
+    }
+
+
+    .note-box h2 {
+
+        font-size: 20px;
+    }
+
+
+    .note-box p {
+
+        font-size: 14px;
+    }
+}
