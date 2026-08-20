@@ -39,7 +39,7 @@ body {
             rgba(0, 0, 0, 0.35),
             rgba(0, 0, 0, 0.65)
         ),
-        url("assets/background\ PG\ GROUP.png");
+        url("./background\ PG\ GROUP.png");
 
     background-size: cover;
     background-position: center;
